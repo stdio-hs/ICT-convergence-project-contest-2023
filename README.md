@@ -14,16 +14,16 @@
  + 라즈베리 파이와 관련된 제품 : Raspberry Pi 4, Pi Camera v1, RI transmitter
  + 사용되는 딥러닝 모델 : Mobile_net_ssd_v2_coco_labels
  + 사용되는 데이터 셋 : hand_gesture_recog_dataset
- [kaggle_data](https://www.kaggle.com/datasets/sarjit07/hand-gesture-recog-dataset)
+ + [kaggle_data](https://www.kaggle.com/datasets/sarjit07/hand-gesture-recog-dataset)
  
 <br>
 
  # Others
  + 함께 개발 희망하시면 메일로 연락주시기 바랍니다.(2월 28일까지 연락주세요)
  + alsrhks2508@naver.com
- [공모전 사이트](https://www.devicemart.co.kr/board/view?id=award_board&seq=122661)
+ + [공모전 사이트](https://www.devicemart.co.kr/board/view?id=award_board&seq=122661)
  
 <br>
  
  
-![캡처](https://user-images.githubusercontent.com/105574034/220147904-02531cce-0bea-48d5-8c75-7975d1e11bdd.JPG)
++ ![캡처](https://user-images.githubusercontent.com/105574034/220147904-02531cce-0bea-48d5-8c75-7975d1e11bdd.JPG)
