@@ -8,6 +8,7 @@ import common2 as cm
 
 
 model_path = ('./../../../finger_model1/')
+model_path = ('./../../../model4/')
 
 
 def main():
