@@ -2,11 +2,11 @@ import pickle
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import img_to_array
+from tensorflow.keras.utils import img_to_array, array_to_img
 from sklearn import preprocessing
 #from typing import Self
 labels = ['blank', 'fist', 'five', 'ok', 'thumbsdown', 'thumbsup']
-f_label = ['0L', '0R', '1L','1R' , '2L', '2R', '3L', '3R', '4L', '4R', '5L', '5R',]
+f_label = ['0L', '0R', '1L', '1R', '2L', '2R', '3L', '3R', '4L', '4R', '5L', '5R',]
 
 def model_load(model_path):
     print('model_loading')
@@ -38,10 +38,9 @@ def getPredict(model, frame):
 
 def _predict(model, frame):
     gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    cv2.resize(gray_image, (100, 120))
+    #cv2.resize(frame, (128, 128))
     gray_image = img_to_array(gray_image)
     gray_image = np.expand_dims(gray_image, axis = 0)
-
     prediction = model.predict(gray_image)
     return prediction
 
@@ -49,7 +48,7 @@ def _getLabel(predict):
     print(predict)
     arg_class = np.argmax(predict)
     print(arg_class)
-    predict_label = f_label[arg_class]
+    predict_label = labels[arg_class]
     return predict_label
 
 
@@ -66,9 +65,9 @@ bg = None
 #240 215
 class VideoCustom():
     #top, right, bottom, left = 30, 200, 130, 320
-    #top, right, bottom, left = 29, 200, 270, 415
+    top, right, bottom, left = 30, 200, 270, 415
     # finger set 
-    top, right, bottom, left = 30, 200, 158, 328
+    #top, right, bottom, left = 30, 200, 158, 328
     #gray, frame, roi
 
     def __init__(self, frame, fps):
@@ -153,7 +152,7 @@ def roi_workin(hand, cv_frame, model, k):
         #스레드홀드 temp.png로 보관
         cv2.imwrite('Temp.png', thresholded)
         #예측
-        predictedClass = getPredict(model, cv_frame.gray)
+        predictedClass = getPredict(model, thresholded)
         print(predictedClass)
         cv2.putText(cv_frame.clone, str(predictedClass), (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
