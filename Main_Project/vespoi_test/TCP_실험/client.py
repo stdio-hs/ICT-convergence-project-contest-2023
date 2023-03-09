@@ -7,12 +7,12 @@ import numpy as np
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ## server ip, port
 #ip = socket.gethostbyname('bd4a-125-185-34-18.jp.ngrok.io') #이건 http라서 안됨 ㅇㅇ
-ip='192.168.0.13'
+ip='220.94.81.28'
 s.connect((ip, 5335))
 
  
 ## webcam 이미지 capture
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture("실험용.mp4")
  
 ## 이미지 속성 변경 3 = width, 4 = height
 cam.set(3, 320)
