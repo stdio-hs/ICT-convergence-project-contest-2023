@@ -6,11 +6,11 @@ import numpy as np
 ## TCP 사용
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ## server ip, port
-s.connect(('192.168.0.13', 8080))
+s.connect(('192.168.0.13', 5335))
  
  
 ## webcam 이미지 capture
-cam = cv2.VideoCapture("각청.mp4")
+cam = cv2.VideoCapture(0)
  
 ## 이미지 속성 변경 3 = width, 4 = height
 cam.set(3, 320)
