@@ -77,7 +77,7 @@ def build_part_with_score(score_threshold, local_max_radius, scores):
                     ))
     return parts
 
-
+import cv2
 def build_part_with_score_fast(score_threshold, local_max_radius, scores):
     parts = []
     num_keypoints = scores.shape[2]
@@ -87,9 +87,11 @@ def build_part_with_score_fast(score_threshold, local_max_radius, scores):
     # on each subarray vs doing the op on the full score array with size=(lmd, lmd, 1)
     for keypoint_id in range(num_keypoints):
         kp_scores = scores[:, :, keypoint_id].copy()
-        kp_scores[kp_scores < score_threshold] = 0.
+        kp_scores[kp_scores < score_threshold] = 0  
+        #print('kp_scores : ', kp_scores)
         max_vals = ndi.maximum_filter(kp_scores, size=lmd, mode='constant')
         max_loc = np.logical_and(kp_scores == max_vals, kp_scores > 0)
+        #print('max_loc : ', max_loc)
         max_loc_idx = max_loc.nonzero()
         for y, x in zip(*max_loc_idx):
             parts.append((
@@ -97,6 +99,7 @@ def build_part_with_score_fast(score_threshold, local_max_radius, scores):
                 keypoint_id,
                 np.array((y, x))
             ))
+    print(parts)
 
     return parts
 
