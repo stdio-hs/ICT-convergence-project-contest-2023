@@ -48,9 +48,21 @@ def main():
                 cap, scale_factor=scale_factor, output_stride = output_stride
             ) # cap, 0.7125, 16
 
+
             heatmaps_result, offsets_result, displacement_fwd_result, displacement_bwd_result = sess.run(
                 model_outputs,
                 fee_dict = {'image:0' : input_image}
+            )
+
+            # np.squeeze() : 불필요한 다차원을 줄여주는 함수
+            pose_scores, keypoint_scores, keypoint_coords = posenet.decode_multi.decode_multiple_poses(
+                heatmaps_result.squeeze(axis = 0),
+                offsets_result.squeeze(axis = 0),
+                displacement_fwd_result.squeeze(axis = 0),
+                displacement_bwd_result.squeeze(axis = 0),
+                output_stride = output_stride, # 16
+                max_pose_detection = 10,
+                min_pose_score = 0.15
             )
 
 
