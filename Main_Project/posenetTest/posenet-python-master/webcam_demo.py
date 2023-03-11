@@ -16,7 +16,7 @@ parser.add_argument('--model', type=int, default=101)
 parser.add_argument('--cam_id', type=int, default=0)
 parser.add_argument('--cam_width', type=int, default=1280)
 parser.add_argument('--cam_height', type=int, default=720)
-parser.add_argument('--scale_factor', type=float, default=0.8) #0.7125
+parser.add_argument('--scale_factor', type=float, default=0.7) #0.7125
 parser.add_argument('--file', type=str, default=None, help="Optionally use a video file instead of a live camera")
 args = parser.parse_args()
 
@@ -40,6 +40,7 @@ def main():
                 model_outputs,
                 feed_dict={'image:0': input_image}
             )
+            #print(heatmaps_result)
 
             pose_scores, keypoint_scores, keypoint_coords = posenet.decode_multi.decode_multiple_poses(
                 heatmaps_result.squeeze(axis=0),
