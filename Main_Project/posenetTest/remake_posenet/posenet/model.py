@@ -46,7 +46,7 @@ def load_config(model_ord):
 
 def load_model(model_id, sess, model_dir=MODEL_DIR):
     model_ord = model_id_to_ord(model_id) #if input 101, return 3
-    model_cfg = load_config(model_ord) 
+    model_cfg = load_config(model_ord)  #리턴되서 받아온 값은 아래와 같다
     """
     model_cfg = {
         'output_stride': output_stride, # 16
